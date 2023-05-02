@@ -49,6 +49,7 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
         ImageView ivImageChant;
         TextView tvNumeroChant;
         TextView tvTitreChant;
+        TextView tvSectionChant;
         RelativeLayout ChantContainer;
 
 
@@ -57,12 +58,14 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
             ivImageChant = itemView.findViewById(R.id.ivImageChant);
             tvNumeroChant = itemView.findViewById(R.id.tvNumeroChant);
             tvTitreChant = itemView.findViewById(R.id.tvTitreChant);
+            tvSectionChant = itemView.findViewById(R.id.tvSectionChant);
             ChantContainer = itemView.findViewById(R.id.ChantContainer);
         }
 
         public void bind(Chants chant) {
             tvNumeroChant.setText(String.valueOf(chant.getnumeroChant()));
             tvTitreChant.setText(chant.gettitreChant());
+            tvSectionChant.setText(chant.getnomSection());
 
             ChantContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
