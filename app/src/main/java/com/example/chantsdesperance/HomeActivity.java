@@ -7,11 +7,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 public class HomeActivity extends AppCompatActivity {
+    List<Section> sections;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,30 +31,49 @@ public class HomeActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Chants D'Esperance");
 
-        Model[] myListData = new Model[]{
-                new Model("Chant D'Esperance Francais", R.drawable.book_open_blank_variant),
-                new Model("Chant D'Esperance Creole", R.drawable.book_open_blank_variant),
-                new Model("Melodies Joyeuse Francais", R.drawable.book_open_blank_variant),
-                new Model("Melodies Joyeuse Creole", R.drawable.book_open_blank_variant),
-                new Model("Reveillons-Nous Chretiens", R.drawable.book_open_blank_variant),
-                new Model("Reveillons-Nous Francais", R.drawable.book_open_blank_variant),
-                new Model("Reveillons-Nous Creole", R.drawable.book_open_blank_variant),
-                new Model("La voix du Reveil Francais", R.drawable.book_open_blank_variant),
-                new Model("La voix du Reveil Creole", R.drawable.book_open_blank_variant),
-                new Model("L'ombre du reveil", R.drawable.book_open_blank_variant),
-                new Model("Haiti Chante Avec Radio Lumiere", R.drawable.book_open_blank_variant),
-                new Model("Haiti Chante Avec Radio Lumiere Ke-yo", R.drawable.book_open_blank_variant),
-                new Model("Gloire a l'agneau", R.drawable.book_open_blank_variant),
-                new Model("Echo des elus", R.drawable.book_open_blank_variant),
 
-        };
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-        myAdapter adapter = new myAdapter(myListData);
+        RecyclerView recyclerView = findViewById(R.id.rvSection);
+        sections = new ArrayList<>();
+
+        Section_Adapter adapter = new Section_Adapter(this, sections);
+
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
+        try {
+            sectionList();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void sectionList() throws JSONException, IOException {
+        InputStream inputStream = getAssets().open("chantsdesperance.json");
+        int size = inputStream.available();
+        byte[] buffer = new byte[size];
+        inputStream.read(buffer);
+        inputStream.close();
+        String json = new String(buffer, "UTF-8");
+
+        JSONObject jsonObject = new JSONObject(json);
+
+        JSONArray jsonArray = jsonObject.getJSONArray("Sections");
+
+        for (int i = 0; i < jsonArray.length(); i++) {
+            JSONArray SectionArray = jsonArray.getJSONArray(i);
+            int indiceSection = SectionArray.getInt(0);
+            String nomSection = SectionArray.getString(1);
+
+            Section section = new Section(nomSection, indiceSection);
+            sections.add(section);
+        }
+
     }
 
     @Override

@@ -23,18 +23,24 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvSection"
-        android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_below="@+id/appBar"
-        android:layout_marginStart="0dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp"
-        android:clipToPadding="false" />
-    <!--on below line we are creating
-        a text for our app-->
+        android:layout_below="@id/appBar">
+
+
+        <TextView
+            android:id="@+id/tvTexteChant"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@android:color/black"
+            app:fontFamily="sans-serif-medium"
+            android:scrollbars="vertical"
+            tools:text="000" />
+
+    </ScrollView>
 
 
 </RelativeLayout>

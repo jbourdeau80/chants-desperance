@@ -1,10 +1,18 @@
 package com.example.chantsdesperance;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.view.WindowManager;
 import android.os.Bundle;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -34,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         }, 2000);
+
 
     }
 }
