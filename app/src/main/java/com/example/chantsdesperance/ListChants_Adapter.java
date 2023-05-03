@@ -2,6 +2,7 @@ package com.example.chantsdesperance;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.parceler.Parcels;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.ViewHolder> {
@@ -49,7 +52,6 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
         ImageView ivImageChant;
         TextView tvNumeroChant;
         TextView tvTitreChant;
-        TextView tvSectionChant;
         RelativeLayout ChantContainer;
 
 
@@ -58,14 +60,24 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
             ivImageChant = itemView.findViewById(R.id.ivImageChant);
             tvNumeroChant = itemView.findViewById(R.id.tvNumeroChant);
             tvTitreChant = itemView.findViewById(R.id.tvTitreChant);
-            tvSectionChant = itemView.findViewById(R.id.tvSectionChant);
             ChantContainer = itemView.findViewById(R.id.ChantContainer);
         }
 
         public void bind(Chants chant) {
-            tvNumeroChant.setText(String.valueOf(chant.getnumeroChant()));
+
+            String text = (chant.getnumeroChant()) + " - " ;
+
+            tvNumeroChant.setText(text);
+
             tvTitreChant.setText(chant.gettitreChant());
-            tvSectionChant.setText(chant.getnomSection());
+            try {
+                InputStream stream = context.getAssets().open(chant.getnomSection() + ".png");
+                Drawable drawable = Drawable.createFromStream(stream, null);
+                ivImageChant.setImageDrawable(drawable);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
 
             ChantContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
