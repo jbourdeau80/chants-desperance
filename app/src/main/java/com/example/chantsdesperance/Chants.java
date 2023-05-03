@@ -2,6 +2,9 @@ package com.example.chantsdesperance;
 
 import org.parceler.Parcel;
 
+import java.util.Comparator;
+import java.util.List;
+
 @Parcel
 public class Chants {
     int numeroChant;
@@ -34,5 +37,6 @@ public class Chants {
     public String gettexteChant() {
         return texteChant;
     }
+
 
 }

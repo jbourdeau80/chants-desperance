@@ -22,7 +22,7 @@
         android:layout_centerInParent="true"
         android:layout_marginStart="25dp"
         android:layout_marginEnd="25dp"
-        android:src="@mipmap/logochant1"
+        android:src="@mipmap/logo_chants"
         android:visibility="visible" />
 
     <TextView
