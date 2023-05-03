@@ -6,33 +6,29 @@
         android:id="@+id/ic_menu"
         android:enabled="true"
         android:icon="@drawable/menu"
-        android:title="@string/chants_d_esperance_menu"
+        android:title="@string/menu"
         android:visible="true"
         app:showAsAction="always" >
 
         <menu>
-            <item android:id="@+id/send_feedback"
-                android:icon="@drawable/send_outline"
-                android:title="@string/send_feedback"
+            <item
+                android:id="@+id/zoom_in"
+                android:title="@string/zoom_in"
+                android:icon="@drawable/minus"
+                app:showAsAction="ifRoom" />
+
+            <item android:id="@+id/zoom_out"
+                android:icon="@drawable/plus"
+                android:title="@string/zoom_out"
                 app:showAsAction="ifRoom"/>
 
             <item android:id="@+id/share"
                 android:icon="@drawable/share_variant_outline"
-                android:title="@string/share"
+                android:title="@string/share_text"
                 app:showAsAction="ifRoom"/>
-
-            <item android:id="@+id/dark_light"
-                android:icon="@drawable/theme_light_dark"
-                android:title="@string/darkMode"
-                app:showAsAction="ifRoom"/>
-
-            <item android:id="@+id/exit"
-                android:icon="@drawable/exit_to_app"
-                android:title="@string/exit"
-                app:showAsAction="always"/>
-
         </menu>
 
 
     </item>
+
 </menu>
