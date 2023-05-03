@@ -63,8 +63,13 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
         }
 
         public void bind(Chants chant) {
-            tvNumeroChant.setText(String.valueOf(chant.getnumeroChant()));
+
+            String text = (chant.getnumeroChant()) + " - " ;
+            tvNumeroChant.setText(text);
+
+
             tvTitreChant.setText(chant.gettitreChant());
+
             tvSectionChant.setText(chant.getnomSection());
 
             ChantContainer.setOnClickListener(new View.OnClickListener() {

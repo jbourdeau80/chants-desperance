@@ -10,4 +10,6 @@
     <color name="Sky_blue">#66cdf6</color>
     <color name="blue">#02aef0</color>
     <color name="gold">#fcd97f</color>
+    <color name="text_color_light">#000000</color>
+    <color name="text_color_dark">#FFFFFF</color>
 </resources>
