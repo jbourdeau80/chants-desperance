@@ -96,17 +96,10 @@ public class HomeActivity extends AppCompatActivity {
                         "mailto", getString(R.string.developpers_email), null));
 
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_subject));
-//                emailIntent.putExtra(Intent.EXTRA_TEXT, "Dear Developer,\n\nI have some feedback for your app:");
                 startActivity(Intent.createChooser(emailIntent, "Send email"));
                 return true;
 
             case R.id.share:
-//                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-//                shareIntent.setType("text/plain");
-//                startActivity(Intent.createChooser(shareIntent, "Share via"));
-//                return true;
-
-
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
                 String address =
@@ -118,15 +111,11 @@ public class HomeActivity extends AppCompatActivity {
 
                 int currentNightMode = getResources().getConfiguration().uiMode
                         & Configuration.UI_MODE_NIGHT_MASK;
-
                 if (currentNightMode == Configuration.UI_MODE_NIGHT_NO) {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
                 } else {
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
                 }
-
-                // update the UI here
                 recreate();
                 return true;
 
