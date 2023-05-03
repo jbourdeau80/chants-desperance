@@ -4,7 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeActivity">
+    tools:context=".HomeActivity"
+    android:id="@+id/listChantActivity">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -35,6 +36,5 @@
         android:clipToPadding="false" />
     <!--on below line we are creating
         a text for our app-->
-
 
 </RelativeLayout>
