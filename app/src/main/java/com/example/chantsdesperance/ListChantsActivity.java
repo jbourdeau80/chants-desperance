@@ -7,9 +7,11 @@ import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -35,7 +37,7 @@ public class ListChantsActivity extends AppCompatActivity {
     private Comparator<? super Chants> titleComparator;
     List<Chants> filteredChants = new ArrayList<>();
     ListChants_Adapter adapter;
-    RecyclerView recyclerView;
+    RecyclerView rvChants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,21 +53,32 @@ public class ListChantsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(section.getnomSection());
 
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.action_search:
+                        return true;
+
+                    case R.id.action_order:
+                    default:
+                        return false;
+                }
+            }
+        });
 
 
 
-        recyclerView = findViewById(R.id.rvChants);
+
+        rvChants = findViewById(R.id.rvChants);
         chants = new ArrayList<>();
 
         adapter = new ListChants_Adapter(this, chants);
         //adapter.sortAlphabetically();
 
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-
-        adapter = new ListChants_Adapter(this, filteredChants);
-
+        rvChants.setHasFixedSize(true);
+        rvChants.setLayoutManager(new LinearLayoutManager(this));
+        rvChants.setAdapter(adapter);
 
         try {
             chantsList();
@@ -76,7 +89,28 @@ public class ListChantsActivity extends AppCompatActivity {
         }
 
     }
+    @SuppressLint("NotifyDataSetChanged")
+    private void searchChants(String query) {
 
+        List<Chants> filteredChants = new ArrayList<>();
+        if (query.isEmpty()) {
+            filteredChants.addAll(chants);
+        } else {
+
+            for (Chants chant : chants) {
+                if (chant.gettitreChant().toLowerCase().contains(query.toLowerCase()) ||
+                        chant.gettexteChant().toLowerCase().contains(query.toLowerCase())) {
+
+                    filteredChants.add(chant);
+                }
+            }
+
+            // add filtered chants through the adapter
+            adapter.setChants(filteredChants);
+            adapter.notifyDataSetChanged();
+        }
+
+    }
     public void chantsList() throws JSONException, IOException {
         InputStream inputStream = getAssets().open("chantsdesperance.json");
         int size = inputStream.available();
@@ -113,55 +147,28 @@ public class ListChantsActivity extends AppCompatActivity {
                     return true;
                 }
 
+        @Override
+        public boolean onCreateOptionsMenu (Menu menu) {
+            getMenuInflater().inflate(R.menu.second_menu, menu);
+            MenuItem searchItem = menu.findItem(R.id.action_search);
+            final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+            if (searchView != null) {
+                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                    @Override
+                    public boolean onQueryTextSubmit(String query) {
+                        searchView.clearFocus();
+                        searchChants(query);
+                        return true;
+                    }
 
-//          switch (item.getItemId()) {
-//        case R.id.action_search:
-//            // Do something when search icon is clicked
-//
-//            return true;
-//
-//              case R.id.action_order:
-//          // Sort data alphabetically in ascending order
-//
-////                  Collections.sort(chants, titleComparator);
-////                  ListChants_Adapter.notifyDataSetChanged();
-//          return true;
-//        default:
-//            return super.onOptionsItemSelected(item);
-//    }
-//    }
-
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.second_menu, menu);
-//        MenuItem searchItem = menu.findItem(R.id.action_search);
-//        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                for (Chants chant : chants) {
-//                    if (chant.gettitreChant().toLowerCase().contains(query.toLowerCase()) ||
-//                            chant.gettexteChant().toLowerCase().contains(query.toLowerCase())) {
-//                        filteredChants.add(chant);
-//                    }
-//                }
-//                // Update the UI to display the filtered results
-//                adapter.updateChantList(filteredChants);
-//                Log.d("FILTERED_RESULTS", filteredChants.toString());
-//               // recyclerView.setAdapter(adapter.updateChantList(filteredChants));
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                // Do something when the user changes the text in the search bar
-//                return false;
-//            }
-//        });
-//
-//        return super.onCreateOptionsMenu(menu);
-//    }
-//
+                    @Override
+                    public boolean onQueryTextChange(String newText) {
+                        // Do something when the user changes the text in the search bar
+                        return false;
+                    }
+                });
             }
+            return super.onCreateOptionsMenu(menu);
+        }
+
+}

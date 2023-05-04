@@ -30,6 +30,10 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
         this.context = context;
     }
 
+    public void setChants(List<Chants> chants) {
+        this.chants = chants;
+    }
+
     @Override
     public ListChants_Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.item_chant, parent, false);

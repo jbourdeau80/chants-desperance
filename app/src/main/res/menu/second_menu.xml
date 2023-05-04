@@ -5,22 +5,24 @@
     <item
         android:id="@+id/ic_menu"
         android:enabled="true"
-        android:icon="@drawable/menu"
+        android:icon="@drawable/menu_vertical"
         android:title="@string/second_menu"
         android:visible="true"
         app:showAsAction="always" >
 
         <menu>
             <item
-                android:id="@+id/search"
+                android:id="@+id/action_search"
                 android:title="@string/search"
+                android:orderInCategory="5"
                 android:icon="@drawable/search"
-                app:showAsAction="ifRoom" />
+                app:showAsAction="collapseActionView"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"/>
 
-            <item android:id="@+id/order"
+            <item android:id="@+id/action_order"
                 android:icon="@drawable/order_alphabetical_ascending"
                 android:title="@string/order"
-                app:showAsAction="ifRoom"/>
+                app:showAsAction="always"/>
 
         </menu>
 
