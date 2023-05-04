@@ -58,7 +58,7 @@ public class ListChantsActivity extends AppCompatActivity {
         chants = new ArrayList<>();
 
         adapter = new ListChants_Adapter(this, chants);
-        adapter.sortAlphabetically();
+        //adapter.sortAlphabetically();
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -146,7 +146,7 @@ public class ListChantsActivity extends AppCompatActivity {
                     }
                 }
                 // Update the UI to display the filtered results
-                adapter.updateChantList(filteredChants);
+                //adapter.updateChantList(filteredChants);
                 Log.d("FILTERED_RESULTS", filteredChants.toString());
                // recyclerView.setAdapter(adapter.updateChantList(filteredChants));
                 return true;
