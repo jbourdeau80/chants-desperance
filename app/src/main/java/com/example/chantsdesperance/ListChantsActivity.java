@@ -32,10 +32,7 @@ import java.util.Objects;
 public class ListChantsActivity extends AppCompatActivity {
 
     List<Chants> chants;
-    Chants chant;
     Section section;
-    private Comparator<? super Chants> titleComparator;
-    List<Chants> filteredChants = new ArrayList<>();
     ListChants_Adapter adapter;
     RecyclerView rvChants;
 
@@ -68,8 +65,6 @@ public class ListChantsActivity extends AppCompatActivity {
         });
 
 
-
-
         rvChants = findViewById(R.id.rvChants);
         chants = new ArrayList<>();
 
@@ -89,28 +84,25 @@ public class ListChantsActivity extends AppCompatActivity {
         }
 
     }
+
     @SuppressLint("NotifyDataSetChanged")
     private void searchChants(String query) {
 
         List<Chants> filteredChants = new ArrayList<>();
-        if (query.isEmpty()) {
-            filteredChants.addAll(chants);
-        } else {
 
-            for (Chants chant : chants) {
-                if (chant.gettitreChant().toLowerCase().contains(query.toLowerCase()) ||
-                        chant.gettexteChant().toLowerCase().contains(query.toLowerCase())) {
+        for (Chants chant : chants) {
+            if (chant.gettitreChant().toLowerCase().contains(query.toLowerCase()) ||
+                    chant.gettexteChant().toLowerCase().contains(query.toLowerCase())) {
 
-                    filteredChants.add(chant);
-                }
+                filteredChants.add(chant);
             }
-
-            // add filtered chants through the adapter
-            adapter.setChants(filteredChants);
-            adapter.notifyDataSetChanged();
         }
 
+        // add filtered chants through the adapter
+        adapter.setChants(filteredChants);
+        adapter.notifyDataSetChanged();
     }
+
     public void chantsList() throws JSONException, IOException {
         InputStream inputStream = getAssets().open("chantsdesperance.json");
         int size = inputStream.available();
@@ -135,40 +127,47 @@ public class ListChantsActivity extends AppCompatActivity {
                 Chants chant = new Chants(numeroChant, titreChant, texteChant, nomSection);
                 Log.i("ListChantsActivity", chant.titreChant);
                 chants.add(chant);
-                  }
+            }
 
-                  }
-                }
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(ListChantsActivity.this, HomeActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivityIfNeeded(intent, 0);
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.second_menu, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        if (searchView != null) {
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
-                public boolean onOptionsItemSelected( MenuItem item ) {
-                    Intent intent = new Intent(ListChantsActivity.this, HomeActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-                    startActivityIfNeeded(intent, 0);
+                public boolean onQueryTextSubmit(String query) {
+                    searchView.clearFocus();
+                    searchChants(query);
                     return true;
                 }
 
-        @Override
-        public boolean onCreateOptionsMenu (Menu menu) {
-            getMenuInflater().inflate(R.menu.second_menu, menu);
-            MenuItem searchItem = menu.findItem(R.id.action_search);
-            final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
-            if (searchView != null) {
-                searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                    @Override
-                    public boolean onQueryTextSubmit(String query) {
-                        searchView.clearFocus();
-                        searchChants(query);
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    // Do something when the user changes the text in the search bar
+                    if (newText.isEmpty()) {
+                        adapter.setChants(chants);
+                        adapter.notifyDataSetChanged();
+                        return true;
+                    } else {
+                        searchChants(newText);
                         return true;
                     }
-
-                    @Override
-                    public boolean onQueryTextChange(String newText) {
-                        // Do something when the user changes the text in the search bar
-                        return false;
-                    }
-                });
-            }
-            return super.onCreateOptionsMenu(menu);
+                }
+            });
         }
-
+            return super.onCreateOptionsMenu(menu);
+    }
 }

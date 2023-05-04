@@ -27,7 +27,6 @@
         android:layout_marginTop="14dp"
         android:layout_toEndOf="@+id/ivImageChant"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@android:color/black"
         app:fontFamily="sans-serif-medium"
         tools:text="000" />
 
@@ -40,7 +39,6 @@
         android:layout_marginTop="14dp"
         android:layout_toEndOf="@+id/tvNumeroChant"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-        android:textColor="@android:color/black"
         app:fontFamily="sans-serif-medium"
         tools:text="Crions à Dieu" />
 
@@ -52,7 +50,6 @@
         android:layout_below="@id/ivImageChant"
         android:layout_marginStart="5dp"
         android:layout_marginTop="5dp"
-        android:background="?android:attr/listDivider"
-        android:backgroundTint="#000000" />
+        android:background="?android:attr/listDivider" />
 
 </RelativeLayout>
