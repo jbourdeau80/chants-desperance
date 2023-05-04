@@ -1,14 +1,10 @@
 package com.example.chantsdesperance;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,8 +23,6 @@ import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
     List<Section> sections;
-    private boolean isDarkModeEnabled = false;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +32,7 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Chants D'Esperance");
+
 
 
         RecyclerView recyclerView = findViewById(R.id.rvSection);
@@ -87,56 +82,32 @@ public class HomeActivity extends AppCompatActivity {
         return true;
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.send_feedback:
+                Toast.makeText(getApplicationContext(), "Send Feedback", Toast.LENGTH_SHORT).show();
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "mailto", getString(R.string.developpers_email), null));
-
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_subject));
-//                emailIntent.putExtra(Intent.EXTRA_TEXT, "Dear Developer,\n\nI have some feedback for your app:");
+                        "mailto","your_email@example.com", null));
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback for My App");
+                emailIntent.putExtra(Intent.EXTRA_TEXT, "Dear Developer,\n\nI have some feedback for your app:");
                 startActivity(Intent.createChooser(emailIntent, "Send email"));
                 return true;
 
             case R.id.share:
-//                Intent shareIntent = new Intent(Intent.ACTION_SEND);
-//                shareIntent.setType("text/plain");
-//                startActivity(Intent.createChooser(shareIntent, "Share via"));
-//                return true;
-
-
+                Toast.makeText(getApplicationContext(), "share app", Toast.LENGTH_SHORT).show();
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
-                String address =
-                        "https://play.google.com/store/apps/details?id=" + getPackageName();
-                shareIntent.putExtra(Intent.EXTRA_TEXT, address);
-                startActivity(Intent.createChooser(shareIntent, "Share App"));
-
-            case R.id.dark_light:
-
-                int currentNightMode = getResources().getConfiguration().uiMode
-                        & Configuration.UI_MODE_NIGHT_MASK;
-
-                if (currentNightMode == Configuration.UI_MODE_NIGHT_NO) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-                }
-
-                // update the UI here
-                recreate();
+                startActivity(Intent.createChooser(shareIntent, "Share via"));
                 return true;
 
             case R.id.exit:
+                Toast.makeText(getApplicationContext(), "Exit", Toast.LENGTH_LONG).show();
                 finish();
                 return true;
 
             default:
                 return super.onOptionsItemSelected(item);
         }
-
     }
 }

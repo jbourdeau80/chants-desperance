@@ -1,9 +1,7 @@
 package com.example.chantsdesperance;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.parceler.Parcels;
 
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.ViewHolder> {
@@ -49,24 +45,6 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
         return chants.size();
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    public void sortAlphabetically() {
-        Collections.sort(chants, new Comparator<Chants>() {
-            @Override
-            public int compare(Chants c1, Chants c2) {
-                return c1.gettitreChant().compareTo(c2.gettitreChant());
-            }
-        });
-        notifyDataSetChanged();
-    }
-    // Method to update the data source
-    @SuppressLint("NotifyDataSetChanged")
-    public void updateChantList(List<Chants> chants) {
-        this.chants = chants;
-        Log.d("FILTERED_RESULTS", chants.toString());
-        notifyDataSetChanged();
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivImageChant;
         TextView tvNumeroChant;
@@ -85,13 +63,8 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
         }
 
         public void bind(Chants chant) {
-
-            String text = (chant.getnumeroChant()) + " - " ;
-            tvNumeroChant.setText(text);
-
-
+            tvNumeroChant.setText(String.valueOf(chant.getnumeroChant()));
             tvTitreChant.setText(chant.gettitreChant());
-
             tvSectionChant.setText(chant.getnomSection());
 
             ChantContainer.setOnClickListener(new View.OnClickListener() {
@@ -106,7 +79,5 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
         }
 
     }
-
-
 }
 

@@ -3,6 +3,9 @@ package com.example.chantsdesperance;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.parceler.Parcels;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 public class Section_Adapter extends RecyclerView.Adapter<Section_Adapter.ViewHolder>
@@ -66,6 +71,13 @@ public class Section_Adapter extends RecyclerView.Adapter<Section_Adapter.ViewHo
 
         public void bind(Section section) {
             tvSectionName.setText(section.getnomSection());
+            try {
+                InputStream stream = context.getAssets().open(section.getnomSection() + ".png");
+                Drawable drawable = Drawable.createFromStream(stream, null);
+                ivImageSection.setImageDrawable(drawable);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             SectionContainer.setOnClickListener(new View.OnClickListener() {
                 @Override

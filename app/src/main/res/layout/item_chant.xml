@@ -27,8 +27,8 @@
         android:layout_marginStart="15dp"
         android:layout_marginTop="14dp"
         android:layout_toEndOf="@+id/ivImageChant"
-        android:textAppearance="@style/Theme.AppCompat.DayNight"
-        android:textSize="18sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/black"
         app:fontFamily="sans-serif-medium"
         tools:text="000" />
 
@@ -37,11 +37,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="14dp"
         android:layout_toEndOf="@+id/tvNumeroChant"
-        android:textAppearance="@style/Theme.ChantsDEsperance"
-        android:textSize="18sp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/black"
         app:fontFamily="sans-serif-medium"
         tools:text="Crions à Dieu" />
 
@@ -49,13 +49,12 @@
         android:id="@+id/tvSectionChant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvTitreChant"
         android:layout_marginStart="15dp"
         android:layout_marginTop="14dp"
+        android:layout_below="@+id/tvTitreChant"
         android:layout_toEndOf="@+id/ivImageChant"
-        android:textAppearance="@style/Theme.ChantsDEsperance"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="@color/gold"
-        android:textSize="11sp"
         app:fontFamily="sans-serif-medium"
         tools:text="Chants D'Espérance Français" />
 
