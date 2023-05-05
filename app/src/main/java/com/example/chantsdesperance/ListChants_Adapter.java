@@ -38,13 +38,7 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
     @Override
     public ListChants_Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-        int width = parent.getWidth();
-        int height = parent.getHeight();
-        if (width > height) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_chant_land, parent, false);
-        } else {
-            view = LayoutInflater.from(context).inflate(R.layout.item_chant, parent, false);
-        }
+        view = LayoutInflater.from(context).inflate(R.layout.item_chant, parent, false);
         return new ListChants_Adapter.ViewHolder(view);
     }
     @Override

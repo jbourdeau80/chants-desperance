@@ -33,12 +33,7 @@ public class Section_Adapter extends RecyclerView.Adapter<Section_Adapter.ViewHo
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
-        int orientation = context.getResources().getConfiguration().orientation;
-        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_section_land, parent, false);
-        } else {
-            view = LayoutInflater.from(context).inflate(R.layout.item_section, parent, false);
-        }
+        view = LayoutInflater.from(context).inflate(R.layout.item_section, parent, false);
         return new ViewHolder(view);
     }
 

@@ -35,6 +35,7 @@ public class ListChantsActivity extends AppCompatActivity {
     Section section;
     ListChants_Adapter adapter;
     RecyclerView rvChants;
+    private boolean isSortedByNumber = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +59,8 @@ public class ListChantsActivity extends AppCompatActivity {
                         return true;
 
                     case R.id.action_order:
+                        sortChants();
+                        return true;
                     default:
                         return false;
                 }
@@ -69,7 +72,6 @@ public class ListChantsActivity extends AppCompatActivity {
         chants = new ArrayList<>();
 
         adapter = new ListChants_Adapter(this, chants);
-        //adapter.sortAlphabetically();
 
         rvChants.setHasFixedSize(true);
         rvChants.setLayoutManager(new LinearLayoutManager(this));
@@ -84,6 +86,37 @@ public class ListChantsActivity extends AppCompatActivity {
         }
 
     }
+
+    private void sortChants() {
+        if (isSortedByNumber) {
+            Collections.sort(chants, new Comparator<Chants>() {
+                @Override
+                public int compare(Chants c1, Chants c2) {
+                    return c1.gettitreChant().compareToIgnoreCase(c2.gettitreChant());
+                }
+            });
+        } else {
+            Collections.sort(chants, new Comparator<Chants>() {
+                @Override
+                public int compare(Chants c1, Chants c2) {
+                    return Integer.compare(c1.getnumeroChant(), c2.getnumeroChant());
+                }
+            });
+        }
+        adapter.notifyDataSetChanged();
+        isSortedByNumber = !isSortedByNumber; // toggle the sort order
+    }
+
+
+    public boolean isInteger(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
 
     @SuppressLint("NotifyDataSetChanged")
     private void searchChants(String query) {
@@ -102,6 +135,25 @@ public class ListChantsActivity extends AppCompatActivity {
         adapter.setChants(filteredChants);
         adapter.notifyDataSetChanged();
     }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private void searchChantsByNumber(int number) {
+
+        List<Chants> filteredChants = new ArrayList<>();
+
+
+        for (Chants chant : chants) {
+            if (String.valueOf(chant.getnumeroChant()).startsWith(String.valueOf(number))) {
+
+                filteredChants.add(chant);
+            }
+        }
+
+        // add filtered chants through the adapter
+        adapter.setChants(filteredChants);
+        adapter.notifyDataSetChanged();
+    }
+
 
     public void chantsList() throws JSONException, IOException {
         InputStream inputStream = getAssets().open("chantsdesperance.json");
@@ -145,12 +197,19 @@ public class ListChantsActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.second_menu, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setQueryHint("Search by number or text...");
         if (searchView != null) {
             searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
                 @Override
                 public boolean onQueryTextSubmit(String query) {
-                    searchView.clearFocus();
-                    searchChants(query);
+                    if (isInteger(query)) {
+                        // search by chant number
+                        int chantNumber = Integer.parseInt(query);
+                        searchChantsByNumber(chantNumber);
+                    } else {
+                        // search by chant title or text
+                        searchChants(query);
+                    }
                     return true;
                 }
 
@@ -162,7 +221,14 @@ public class ListChantsActivity extends AppCompatActivity {
                         adapter.notifyDataSetChanged();
                         return true;
                     } else {
-                        searchChants(newText);
+                        if (isInteger(newText)) {
+                            // search by chant number
+                            int chantNumber = Integer.parseInt(newText);
+                            searchChantsByNumber(chantNumber);
+                        } else {
+                            // search by chant title or text
+                            searchChants(newText);
+                        }
                         return true;
                     }
                 }
