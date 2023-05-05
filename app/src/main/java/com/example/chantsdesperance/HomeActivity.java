@@ -1,16 +1,16 @@
 package com.example.chantsdesperance;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,7 +32,6 @@ public class HomeActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Chants D'Esperance");
-
 
 
         RecyclerView recyclerView = findViewById(R.id.rvSection);
@@ -78,31 +77,43 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.main_menu, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.send_feedback:
-                Toast.makeText(getApplicationContext(), "Send Feedback", Toast.LENGTH_SHORT).show();
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                        "mailto","your_email@example.com", null));
-                emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Feedback for My App");
-                emailIntent.putExtra(Intent.EXTRA_TEXT, "Dear Developer,\n\nI have some feedback for your app:");
+                        "mailto", getString(R.string.developpers_email), null));
+
+                emailIntent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.feedback_subject));
                 startActivity(Intent.createChooser(emailIntent, "Send email"));
                 return true;
 
             case R.id.share:
-                Toast.makeText(getApplicationContext(), "share app", Toast.LENGTH_SHORT).show();
                 Intent shareIntent = new Intent(Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
-                startActivity(Intent.createChooser(shareIntent, "Share via"));
+                String address =
+                        "https://play.google.com/store/apps/details?id=" + getPackageName();
+                shareIntent.putExtra(Intent.EXTRA_TEXT, address);
+                startActivity(Intent.createChooser(shareIntent, "Share App"));
+
+            case R.id.dark_light:
+
+                int currentNightMode = getResources().getConfiguration().uiMode
+                        & Configuration.UI_MODE_NIGHT_MASK;
+                if (currentNightMode == Configuration.UI_MODE_NIGHT_NO) {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                } else {
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                recreate();
                 return true;
 
             case R.id.exit:
-                Toast.makeText(getApplicationContext(), "Exit", Toast.LENGTH_LONG).show();
                 finish();
                 return true;
 

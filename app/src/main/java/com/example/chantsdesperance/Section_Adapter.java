@@ -1,6 +1,6 @@
 package com.example.chantsdesperance;
 
-
+import android.content.res.Configuration;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -20,36 +20,33 @@ import org.parceler.Parcels;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-
-public class Section_Adapter extends RecyclerView.Adapter<Section_Adapter.ViewHolder>
-{
+public class Section_Adapter extends RecyclerView.Adapter<Section_Adapter.ViewHolder> {
 
     private List<Section> sections;
     Context context;
 
-
     public Section_Adapter(Context context, List<Section> data) {
-
         this.sections = data;
         this.context = context;
     }
 
-
-
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.item_section, parent, false);
+        View view;
+        int orientation = context.getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            view = LayoutInflater.from(context).inflate(R.layout.item_section_land, parent, false);
+        } else {
+            view = LayoutInflater.from(context).inflate(R.layout.item_section, parent, false);
+        }
         return new ViewHolder(view);
     }
-
-
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Section section = sections.get(position);
         holder.bind(section);
     }
-
 
     @Override
     public int getItemCount() {
@@ -60,7 +57,6 @@ public class Section_Adapter extends RecyclerView.Adapter<Section_Adapter.ViewHo
         ImageView ivImageSection;
         TextView tvSectionName;
         RelativeLayout SectionContainer;
-
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -85,7 +81,6 @@ public class Section_Adapter extends RecyclerView.Adapter<Section_Adapter.ViewHo
                     Intent intent = new Intent(context, ListChantsActivity.class);
                     intent.putExtra("section", Parcels.wrap(section));
                     context.startActivity(intent);
-
                 }
             });
         }

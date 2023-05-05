@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/action_search"
-        android:title="Search"
-        android:orderInCategory="5"
-        android:icon= "@drawable/search"
-        app:showAsAction="always"
-        app:actionViewClass="androidx.appcompat.widget.SearchView" />
 
     <item
-        android:id="@+id/action_order"
-        android:title="order"
-        android:icon= "@drawable/order_alphabetical_ascending"
-        app:showAsAction="always"/>
+        android:id="@+id/ic_menu"
+        android:enabled="true"
+        android:icon="@drawable/menu_vertical"
+        android:title="@string/second_menu"
+        android:visible="true"
+        app:showAsAction="always" >
+
+        <menu>
+            <item
+                android:id="@+id/action_search"
+                android:title="@string/search"
+                android:orderInCategory="5"
+                android:icon="@drawable/search"
+                app:showAsAction="collapseActionView"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+
+            <item android:id="@+id/action_order"
+                android:icon="@drawable/order_alphabetical_ascending"
+                android:title="@string/order"
+                app:showAsAction="always"/>
+
+        </menu>
+
+
+    </item>
+
 </menu>

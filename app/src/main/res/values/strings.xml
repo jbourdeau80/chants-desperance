@@ -8,6 +8,13 @@
     <string name="send_feedback">Send feedback</string>
     <string name="share">Share</string>
     <string name="exit">Exit</string>
-    <string name="chants_d_esperance_menu">Chants_D\'esperance_menu</string>
-    <string name="darkMode">dark_mode</string>
+    <string name="main_menu">Chants_D\'esperance_menu</string>
+    <string name="menu">Chants_D\'esperance_menu</string>
+    <string name="zoom_in">Zoom_in</string>
+    <string name="zoom_out">Zoom_out</string>
+    <string name="share_text">Share_text</string>
+    <string name="darkMode">Dark Mode</string>
+    <string name="search">Search</string>
+    <string name="order">Oder</string>
+    <string name="second_menu">Second menu</string>
 </resources>
