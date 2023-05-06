@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Chants d\'Esperance</string>
     <string name="App_name">Chants d\'Esperance</string>
-    <string name="chant_d_esperance">Chant D\'esperance</string>
+    <string name="chant_d_esperance">Chants D\'Esperance</string>
     <string name="chant_title">%1$d - %2$s</string>
     <string name="developpers_email">dimanchemydl133@gmail.com, jenniferbourdeau15@gmail.com</string>
     <string name="feedback_subject">Feedback for My App</string>
@@ -17,4 +17,5 @@
     <string name="search">Search</string>
     <string name="order">Oder</string>
     <string name="second_menu">Second menu</string>
+    <string name="not_found_message">Not found, try another.</string>
 </resources>

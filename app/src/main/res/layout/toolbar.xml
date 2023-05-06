@@ -3,5 +3,5 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:titleTextColor="@color/black"
-    android:background="@color/Sky_blue"
+    android:background="@color/gold"
     android:elevation="15dp"/>

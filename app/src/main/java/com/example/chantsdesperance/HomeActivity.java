@@ -114,7 +114,7 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
 
             case R.id.exit:
-                finish();
+                finishAffinity();
                 return true;
 
             default:
