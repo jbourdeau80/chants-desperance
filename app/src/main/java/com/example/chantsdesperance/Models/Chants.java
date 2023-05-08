@@ -1,9 +1,6 @@
-package com.example.chantsdesperance;
+package com.example.chantsdesperance.Models;
 
 import org.parceler.Parcel;
-
-import java.util.Comparator;
-import java.util.List;
 
 @Parcel
 public class Chants {

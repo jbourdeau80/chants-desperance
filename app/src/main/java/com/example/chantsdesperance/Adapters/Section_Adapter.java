@@ -1,11 +1,8 @@
-package com.example.chantsdesperance;
+package com.example.chantsdesperance.Adapters;
 
-import android.content.res.Configuration;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.OvalShape;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,11 +12,16 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.chantsdesperance.Activities.ListChantsActivity;
+import com.example.chantsdesperance.Models.Section;
+import com.example.chantsdesperance.R;
+
 import org.parceler.Parcels;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+
 public class Section_Adapter extends RecyclerView.Adapter<Section_Adapter.ViewHolder> {
 
     private List<Section> sections;

@@ -1,4 +1,4 @@
-package com.example.chantsdesperance;
+package com.example.chantsdesperance.Models;
 import org.parceler.Parcel;
 
 
@@ -16,6 +16,10 @@ public class Section {
 
     public String getnomSection() {
         return nomSection;
+    }
+
+    public int getindiceSection() {
+        return indiceSection;
     }
 
 }

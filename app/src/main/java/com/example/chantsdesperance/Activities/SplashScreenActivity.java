@@ -1,20 +1,15 @@
-package com.example.chantsdesperance;
+package com.example.chantsdesperance.Activities;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Handler;
-import android.view.WindowManager;
-import android.os.Bundle;
+import com.example.chantsdesperance.R;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-public class MainActivity extends AppCompatActivity {
+public class SplashScreenActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +17,13 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_splashscreen);
 
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent i = new Intent(MainActivity.this, HomeActivity.class);
+                Intent i = new Intent(SplashScreenActivity.this, SectionActivity.class);
                 startActivity(i);
                 finish();
             }

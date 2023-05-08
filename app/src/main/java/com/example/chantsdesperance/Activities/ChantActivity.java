@@ -1,7 +1,5 @@
-package com.example.chantsdesperance;
+package com.example.chantsdesperance.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.TypedValue;
@@ -13,7 +11,15 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.widget.ScrollView;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.example.chantsdesperance.Models.Chants;
+import com.example.chantsdesperance.R;
+
 import org.parceler.Parcels;
+
 import java.util.Objects;
 
 public class ChantActivity extends AppCompatActivity implements View.OnTouchListener {
@@ -54,7 +60,7 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
         setSupportActionBar(toolbar);
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.back);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        toolbar.inflateMenu(R.menu.menu);
+        toolbar.inflateMenu(R.menu.chant_menu);
 
         String text = (chants.getnumeroChant()) + " - " ;
 
@@ -116,7 +122,7 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.chant_menu, menu);
         return true;
     }
 

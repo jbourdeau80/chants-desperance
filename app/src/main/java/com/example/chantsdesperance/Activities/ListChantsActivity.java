@@ -1,4 +1,11 @@
-package com.example.chantsdesperance;
+package com.example.chantsdesperance.Activities;
+
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -7,16 +14,10 @@ import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.util.TypedValue;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.EditText;
-
+import com.example.chantsdesperance.Adapters.ListChants_Adapter;
+import com.example.chantsdesperance.Models.Chants;
+import com.example.chantsdesperance.Models.Section;
+import com.example.chantsdesperance.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
@@ -178,17 +179,17 @@ public class ListChantsActivity extends AppCompatActivity {
 
         JSONArray jsonArray = jsonObject.getJSONArray("Chants");
 
-        String nomSection = section.nomSection;
+        String nomSection = section.getnomSection();
         for (int i = 0; i < jsonArray.length(); i++) {
             JSONArray ChantsArray = jsonArray.getJSONArray(i);
             int indice_section = ChantsArray.getInt(0);
-            if (indice_section == section.indiceSection) {
+            if (indice_section == section.getindiceSection()) {
                 int numeroChant = ChantsArray.getInt(1);
                 String titreChant = ChantsArray.getString(2);
                 String texteChant = ChantsArray.getString(3);
 
                 Chants chant = new Chants(numeroChant, titreChant, texteChant, nomSection);
-                Log.i("ListChantsActivity", chant.titreChant);
+                Log.i("ListChantsActivity", chant.gettitreChant());
                 chants.add(chant);
             }
 
@@ -197,7 +198,7 @@ public class ListChantsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent intent = new Intent(ListChantsActivity.this, HomeActivity.class);
+        Intent intent = new Intent(ListChantsActivity.this, SectionActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivityIfNeeded(intent, 0);
         return true;
@@ -205,7 +206,7 @@ public class ListChantsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.second_menu, menu);
+        getMenuInflater().inflate(R.menu.section_menu, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
         final SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setQueryHint("Search by number or text...");

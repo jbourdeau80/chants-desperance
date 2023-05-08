@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:id="@+id/root_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".HomeActivity">
+    tools:context=".Activities.ChantActivity">
 
 
     <com.google.android.material.appbar.AppBarLayout

@@ -1,9 +1,4 @@
-package com.example.chantsdesperance;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+package com.example.chantsdesperance.Activities;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -11,6 +6,16 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.chantsdesperance.Adapters.Section_Adapter;
+import com.example.chantsdesperance.Models.Section;
+import com.example.chantsdesperance.R;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,13 +26,13 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomeActivity extends AppCompatActivity {
+public class SectionActivity extends AppCompatActivity {
     List<Section> sections;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_section);
 
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);

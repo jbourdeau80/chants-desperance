@@ -1,4 +1,4 @@
-package com.example.chantsdesperance;
+package com.example.chantsdesperance.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -7,12 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.chantsdesperance.Activities.ChantActivity;
+import com.example.chantsdesperance.Models.Chants;
+import com.example.chantsdesperance.R;
 
 import org.parceler.Parcels;
 
@@ -36,10 +39,10 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
     }
 
     @Override
-    public ListChants_Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view;
         view = LayoutInflater.from(context).inflate(R.layout.item_chant, parent, false);
-        return new ListChants_Adapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
