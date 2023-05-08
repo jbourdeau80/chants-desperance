@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/root_layout"
     android:orientation="horizontal"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeActivity">
@@ -25,6 +26,7 @@
 
 
     <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/appBar"

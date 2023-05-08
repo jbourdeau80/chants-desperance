@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/root_layout"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeActivity">
 
@@ -22,8 +23,8 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <ScrollView
+        android:id="@+id/scroll_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/appBar"
@@ -33,11 +34,10 @@
         <TextView
             android:id="@+id/tvTexteChant"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="25dp"
             android:layout_marginTop="25dp"
             android:textSize="19sp"
-            android:justificationMode="inter_word"
             app:fontFamily="sans-serif-medium"
             tools:text="1.
 

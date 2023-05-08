@@ -2,23 +2,40 @@ package com.example.chantsdesperance;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.ScaleGestureDetector;
+import android.view.VelocityTracker;
+import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
-
 import org.parceler.Parcels;
 import java.util.Objects;
 
-public class ChantActivity extends AppCompatActivity {
+public class ChantActivity extends AppCompatActivity implements View.OnTouchListener {
 
     Chants chants;
     TextView tvTexteChant;
-    float textSize;
+    private float textSize;
+    private VelocityTracker velocityTracker = null;
+
+
+    private static final float MIN_ZOOM = 1.0f;
+    private static final float MAX_ZOOM = 5.0f;
+
+    private float scaleFactor = 1.0f;
+    private float scrollX = 0.0f;
+    private float scrollY = 0.0f;
+    private ScaleGestureDetector detector;
+
+    private ScrollView scrollView;
+    private static final String TAG = "TouchTest";
+    private float startX, startY, lastX, lastY;
+    private int activePointerId = MotionEvent.INVALID_POINTER_ID;
 
 
 
@@ -26,6 +43,9 @@ public class ChantActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chant);
+
+        View rootLayout = findViewById(R.id.root_layout);
+        rootLayout.setOnTouchListener(this);
 
 
         chants = Parcels.unwrap(getIntent().getParcelableExtra("chants"));
@@ -39,11 +59,23 @@ public class ChantActivity extends AppCompatActivity {
         String text = (chants.getnumeroChant()) + " - " ;
 
 
+
         getSupportActionBar().setTitle(text + chants.gettitreChant());
 
 
         tvTexteChant = findViewById(R.id.tvTexteChant);
         tvTexteChant.setText(chants.gettexteChant());
+
+        scrollView = findViewById(R.id.scroll_view);
+        // Set the touch listener on the view
+
+        tvTexteChant.setOnTouchListener(this);
+
+
+        // Set up the scale gesture detector
+        detector = new ScaleGestureDetector(this, new ScaleListener());
+
+
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -73,7 +105,8 @@ public class ChantActivity extends AppCompatActivity {
 
     }
 
-    @Override
+
+@Override
     public boolean onOptionsItemSelected( MenuItem item ) {
         Intent intent = new Intent(ChantActivity.this, ListChantsActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
@@ -86,4 +119,73 @@ public class ChantActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
     }
+
+
+
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+        // Pass the event to the scale gesture detector
+        detector.onTouchEvent(event);
+
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                // Start tracking velocity
+                if (velocityTracker == null) {
+                    velocityTracker = VelocityTracker.obtain();
+                } else {
+                    velocityTracker.clear();
+                }
+                velocityTracker.addMovement(event);
+                lastX = event.getX();
+                lastY = event.getY();
+                break;
+
+            case MotionEvent.ACTION_MOVE:
+                // Track velocity and update text position
+                velocityTracker.addMovement(event);
+                velocityTracker.computeCurrentVelocity(6000);
+                float deltaX = event.getX() - lastX;
+                float deltaY = event.getY() - lastY;
+                lastX = event.getX();
+                lastY = event.getY();
+                float newX = tvTexteChant.getX() + deltaX / scaleFactor +
+                        velocityTracker.getXVelocity() / scaleFactor / 100;
+                float newY = tvTexteChant.getY() + deltaY / scaleFactor +
+                        velocityTracker.getYVelocity() / scaleFactor / 100;
+                tvTexteChant.setX(newX);
+                tvTexteChant.setY(newY);
+                break;
+
+            case MotionEvent.ACTION_UP:
+                // Stop tracking velocity
+                if (velocityTracker != null) {
+                    velocityTracker.recycle();
+                    velocityTracker = null;
+                }
+                break;
+        }
+
+        return true;
+    }
+
+
+    private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
+        @Override
+        public boolean onScale(ScaleGestureDetector detector) {
+            // Get the scale factor
+            scaleFactor *= detector.getScaleFactor();
+
+            // Make sure the scale factor is within the min/max limits
+            scaleFactor = Math.max(MIN_ZOOM, Math.min(scaleFactor, MAX_ZOOM));
+
+            // Apply the scale factor to the view
+            tvTexteChant.setScaleX(scaleFactor);
+            tvTexteChant.setScaleY(scaleFactor);
+
+            return true;
+        }
+    }
+
+
 }

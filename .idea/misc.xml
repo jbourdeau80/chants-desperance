@@ -8,10 +8,12 @@
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/debug/res/drawable-v24/menu.xml" value="0.1" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/debug/res/drawable-v24/send_outline.xml" value="0.1" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/debug/res/drawable-v24/share_variant_outline.xml" value="0.1" />
+        <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/drawable-v24/float_button.xml" value="0.2485" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/drawable-v24/magnify_plus_outline.xml" value="0.121" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/drawable-v24/menu_vertical.xml" value="0.121" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/drawable-v24/minus.xml" value="0.121" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/drawable-v24/order_alphabetical_ascending.xml" value="0.121" />
+        <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/drawable-v24/plus.xml" value="0.2485" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/drawable-v24/theme_light_dark.xml" value="0.121" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/drawable/back.xml" value="0.121" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2555" />
@@ -19,7 +21,7 @@
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/drawable/search.xml" value="0.121" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/layout-land/activity_chant.xml" value="0.2" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/layout-land/activity_chant_land.xml" value="0.21164021164021163" />
-        <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/layout/activity_chant.xml" value="0.25" />
+        <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/layout/activity_chant.xml" value="0.1" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/layout/activity_chant_land..xml" value="0.25" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/layout/activity_home.xml" value="0.264" />
         <entry key="..\:/Users/Debbie/AndroidStudioProjects/ChantsdEsperance/app/src/main/res/layout/activity_launch.xml" value="0.4" />
