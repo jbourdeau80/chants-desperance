@@ -15,6 +15,9 @@ import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
+
+import com.google.android.material.snackbar.Snackbar;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -130,6 +133,10 @@ public class ListChantsActivity extends AppCompatActivity {
                 filteredChants.add(chant);
             }
         }
+        if(filteredChants.isEmpty()){
+
+            Snackbar.make(rvChants, "Not found", Snackbar.LENGTH_SHORT).show();
+        }
 
         // add filtered chants through the adapter
         adapter.setChants(filteredChants);
@@ -147,6 +154,10 @@ public class ListChantsActivity extends AppCompatActivity {
 
                 filteredChants.add(chant);
             }
+        }
+        if(filteredChants.isEmpty()){
+
+            Snackbar.make(rvChants, "Not found", Snackbar.LENGTH_SHORT).show();
         }
 
         // add filtered chants through the adapter

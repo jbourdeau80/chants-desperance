@@ -34,7 +34,7 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
 
     private ScrollView scrollView;
     private static final String TAG = "TouchTest";
-    private float startX, startY, lastX, lastY;
+    private float lastX, lastY;
     private int activePointerId = MotionEvent.INVALID_POINTER_ID;
 
 
@@ -144,15 +144,15 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
             case MotionEvent.ACTION_MOVE:
                 // Track velocity and update text position
                 velocityTracker.addMovement(event);
-                velocityTracker.computeCurrentVelocity(6000);
+                velocityTracker.computeCurrentVelocity(2000);
                 float deltaX = event.getX() - lastX;
                 float deltaY = event.getY() - lastY;
                 lastX = event.getX();
                 lastY = event.getY();
                 float newX = tvTexteChant.getX() + deltaX / scaleFactor +
-                        velocityTracker.getXVelocity() / scaleFactor / 100;
+                        velocityTracker.getXVelocity() / scaleFactor / 200;
                 float newY = tvTexteChant.getY() + deltaY / scaleFactor +
-                        velocityTracker.getYVelocity() / scaleFactor / 100;
+                        velocityTracker.getYVelocity() / scaleFactor / 200;
                 tvTexteChant.setX(newX);
                 tvTexteChant.setY(newY);
                 break;
