@@ -34,14 +34,9 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
     private static final float MAX_ZOOM = 5.0f;
 
     private float scaleFactor = 1.0f;
-    private float scrollX = 0.0f;
-    private float scrollY = 0.0f;
     private ScaleGestureDetector detector;
 
-    private ScrollView scrollView;
-    private static final String TAG = "TouchTest";
     private float lastX, lastY;
-    private int activePointerId = MotionEvent.INVALID_POINTER_ID;
 
 
 
@@ -72,7 +67,6 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
         tvTexteChant = findViewById(R.id.tvTexteChant);
         tvTexteChant.setText(chants.gettexteChant());
 
-        scrollView = findViewById(R.id.scroll_view);
         // Set the touch listener on the view
 
         tvTexteChant.setOnTouchListener(this);
@@ -150,15 +144,15 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
             case MotionEvent.ACTION_MOVE:
                 // Track velocity and update text position
                 velocityTracker.addMovement(event);
-                velocityTracker.computeCurrentVelocity(2000);
+                velocityTracker.computeCurrentVelocity(1000);
                 float deltaX = event.getX() - lastX;
                 float deltaY = event.getY() - lastY;
                 lastX = event.getX();
                 lastY = event.getY();
                 float newX = tvTexteChant.getX() + deltaX / scaleFactor +
-                        velocityTracker.getXVelocity() / scaleFactor / 200;
+                        velocityTracker.getXVelocity() / scaleFactor / 1000;
                 float newY = tvTexteChant.getY() + deltaY / scaleFactor +
-                        velocityTracker.getYVelocity() / scaleFactor / 200;
+                        velocityTracker.getYVelocity() / scaleFactor / 1000;
                 tvTexteChant.setX(newX);
                 tvTexteChant.setY(newY);
                 break;
