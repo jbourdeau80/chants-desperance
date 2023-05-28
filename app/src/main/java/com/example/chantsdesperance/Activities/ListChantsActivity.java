@@ -33,6 +33,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+// This class represents an activity that displays a list of chants. It includes functions for initializing the activity,
+// populating the chant list, handling menu item selections, sorting the chants, and searching for chants
+
 public class ListChantsActivity extends AppCompatActivity {
 
     List<Chants> chants;
@@ -46,6 +49,7 @@ public class ListChantsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_chants);
 
+        // Unwrap the Section object passed from the previous activity
         section = Parcels.unwrap(getIntent().getParcelableExtra("section"));
 
 
@@ -91,6 +95,7 @@ public class ListChantsActivity extends AppCompatActivity {
 
     }
 
+    // Function to sort the chants based on title or number
     private void sortChants() {
         if (isSortedByNumber) {
             Collections.sort(chants, new Comparator<Chants>() {
@@ -111,7 +116,7 @@ public class ListChantsActivity extends AppCompatActivity {
         isSortedByNumber = !isSortedByNumber; // toggle the sort order
     }
 
-
+    // Function to check if a string is an integer
     public boolean isInteger(String str) {
         try {
             Integer.parseInt(str);
@@ -121,7 +126,7 @@ public class ListChantsActivity extends AppCompatActivity {
         }
     }
 
-
+    // Function to search chants by title or text
     @SuppressLint("NotifyDataSetChanged")
     private void searchChants(String query) {
 
@@ -144,6 +149,7 @@ public class ListChantsActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    // Searches chants by number and updates the adapter with the filtered chants
     @SuppressLint("NotifyDataSetChanged")
     private void searchChantsByNumber(int number) {
 
@@ -166,7 +172,7 @@ public class ListChantsActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
-
+    // Reads a JSON file containing a list of chants and adds them to the activity's chants list
     public void chantsList() throws JSONException, IOException {
         InputStream inputStream = getAssets().open("chantsdesperance.json");
         int size = inputStream.available();
@@ -196,6 +202,7 @@ public class ListChantsActivity extends AppCompatActivity {
         }
     }
 
+    // Handles the selected menu item by starting the SectionActivity and setting the appropriate flags
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(ListChantsActivity.this, SectionActivity.class);
@@ -203,7 +210,7 @@ public class ListChantsActivity extends AppCompatActivity {
         startActivityIfNeeded(intent, 0);
         return true;
     }
-
+    // Inflates the menu layout and sets up the search functionality
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.section_menu, menu);
@@ -225,6 +232,8 @@ public class ListChantsActivity extends AppCompatActivity {
                     return true;
                 }
 
+                // Handles the text change in the search bar, performs searches based on the input
+                // and updates the adapter with the filtered chants or the original list when the input is empty
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     // Do something when the user changes the text in the search bar

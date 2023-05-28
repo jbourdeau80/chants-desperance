@@ -22,13 +22,14 @@ import org.parceler.Parcels;
 
 import java.util.Objects;
 
+// This class represents an activity that displays a chant. It includes functions for initializing the activity,
+// handling touch events, zooming in/out, moving the chant text, and handling menu item selections
 public class ChantActivity extends AppCompatActivity implements View.OnTouchListener {
 
     Chants chants;
     TextView tvTexteChant;
     private float textSize;
     private VelocityTracker velocityTracker = null;
-
 
     private static final float MIN_ZOOM = 1.0f;
     private static final float MAX_ZOOM = 5.0f;
@@ -45,6 +46,7 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chant);
 
+        // Initializes the activity, sets up the toolbar, retrieves the chant from the intent, and sets the text and title
         View rootLayout = findViewById(R.id.root_layout);
         rootLayout.setOnTouchListener(this);
 
@@ -78,6 +80,8 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
 
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+
+            //menu item clicks for zooming in/out the chant text and sharing the chant text using an Intent
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
@@ -106,6 +110,7 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
     }
 
 
+    // Handles menu item selections, in this case, navigating back to the ListChantsActivity
 @Override
     public boolean onOptionsItemSelected( MenuItem item ) {
         Intent intent = new Intent(ChantActivity.this, ListChantsActivity.class);
@@ -114,6 +119,7 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
         return true;
     }
 
+    // Inflates the chant menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.chant_menu, menu);
@@ -122,7 +128,7 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
 
 
 
-
+    // Handles touch events on the view, including scaling, moving, and tracking velocity
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         // Pass the event to the scale gesture detector
@@ -169,7 +175,7 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
         return true;
     }
 
-
+    // Handles the scaling gesture and applies the scale factor to the view
     private class ScaleListener extends ScaleGestureDetector.SimpleOnScaleGestureListener {
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
