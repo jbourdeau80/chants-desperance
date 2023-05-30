@@ -26,6 +26,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+// This class represents an activity that displays a list of sections. It includes functions for initializing the activity,
+// populating the section list, handling menu item selections, and managing the app's theme
 public class SectionActivity extends AppCompatActivity {
     List<Section> sections;
 
@@ -34,6 +36,8 @@ public class SectionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_section);
 
+
+        // Initializes the activity, sets up the toolbar, and configures the RecyclerView for displaying sections
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Chants D'Esperance");
@@ -57,6 +61,7 @@ public class SectionActivity extends AppCompatActivity {
 
     }
 
+    // Reads a JSON file containing a list of sections and adds them to the activity's section list
     public void sectionList() throws JSONException, IOException {
         InputStream inputStream = getAssets().open("chantsdesperance.json");
         int size = inputStream.available();
@@ -80,6 +85,7 @@ public class SectionActivity extends AppCompatActivity {
 
     }
 
+    // Inflates the menu layout
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);
@@ -89,6 +95,13 @@ public class SectionActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
+        // Handles the selected menu item based on its ID
+        //    - "send_feedback": Starts an email intent for sending feedback
+        //    - "share": Starts a share intent for sharing the app's Play Store link
+        //    - "dark_light": Toggles the app's theme between light and dark modes
+        //    - "exit": Finishes the activity and closes the app
+
         switch (item.getItemId()) {
             case R.id.send_feedback:
                 Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(

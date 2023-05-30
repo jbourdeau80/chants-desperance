@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+// This class is a RecyclerView adapter responsible for populating the items in the chants list
+// It takes a list of Chants objects as data and binds the data to the corresponding views in the item layout
 public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.ViewHolder> {
 
     private List<Chants> chants;
@@ -40,12 +42,16 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        // Inflate the item layout and create a ViewHolder
         View view;
         view = LayoutInflater.from(context).inflate(R.layout.item_chant, parent, false);
         return new ViewHolder(view);
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        // Bind the chant data to the ViewHolder
         Chants chant = chants.get(position);
         holder.bind(chant);
     }
@@ -63,6 +69,7 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
         RelativeLayout ChantContainer;
 
         public ViewHolder(View itemView) {
+            // Initialize the views in the item layout
             super(itemView);
             ivImageChant = itemView.findViewById(R.id.ivImageChant);
             tvNumeroChant = itemView.findViewById(R.id.tvNumeroChant);
@@ -90,6 +97,7 @@ public class ListChants_Adapter extends RecyclerView.Adapter<ListChants_Adapter.
             ChantContainer.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    // Open the ChantActivity when the container is clicked
                     Intent intent = new Intent(context, ChantActivity.class);
                     intent.putExtra("chants", Parcels.wrap(chant));
                     context.startActivity(intent);
