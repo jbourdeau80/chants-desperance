@@ -13,7 +13,8 @@
     <string name="zoom_out">Zoom_out</string>
     <string name="share_text">Share_text</string>
     <string name="darkMode">Dark Mode</string>
+    <string name="lightMode">Light Mode</string>
     <string name="search">Search</string>
-    <string name="order">Oder</string>
+    <string name="order">Order</string>
     <string name="section_menu">Section menu</string>
 </resources>

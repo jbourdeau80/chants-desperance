@@ -22,7 +22,7 @@
                 app:showAsAction="ifRoom"/>
 
             <item android:id="@+id/dark_light"
-                android:icon="@drawable/theme_light_dark"
+                android:icon="@drawable/icon_dark"
                 android:title="@string/darkMode"
                 app:showAsAction="ifRoom"/>
 
