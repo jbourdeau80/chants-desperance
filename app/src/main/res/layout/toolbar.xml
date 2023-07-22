@@ -1,7 +1,19 @@
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:titleTextColor="@color/black"
     android:background="@color/gold"
-    android:elevation="15dp"/>
+    android:elevation="15dp">
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/myswitch"
+        android:layout_marginStart="56dp"
+        android:thumb="@drawable/thumb_layerlist"
+        app:track="@drawable/track_backgrounds"
+        android:switchPadding="10dp"/>
+
+</androidx.appcompat.widget.Toolbar>

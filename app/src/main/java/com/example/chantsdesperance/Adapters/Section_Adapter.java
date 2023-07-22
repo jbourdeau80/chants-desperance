@@ -21,7 +21,6 @@ import org.parceler.Parcels;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-
 // This class is a custom RecyclerView adapter for displaying sections in a list. It includes functions for creating
 // and binding view holders, as well as obtaining the item count. The adapter also defines a ViewHolder class that
 // represents individual items in the list and handles binding data to the item views
@@ -57,7 +56,7 @@ public class Section_Adapter extends RecyclerView.Adapter<Section_Adapter.ViewHo
         return sections.size();
     }
 
-    // Initializes the item views of the ViewHolder
+    // Initializes the item views of the ViewHolde
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivImageSection;
         TextView tvSectionName;

@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.chantsdesperance.R;
 
+
 // This class represents a splash screen activity that is displayed when the app starts. It shows a splash screen for a fixed duration
 // and then transitions to the SectionActivity
 public class SplashScreenActivity extends AppCompatActivity {
@@ -24,9 +25,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
 
         new Handler().postDelayed(new Runnable() {
-
             // After a delay of 2000 milliseconds, starts the SectionActivity and finishes the splash screen activity
-        @Override
+            @Override
             public void run() {
                 Intent i = new Intent(SplashScreenActivity.this, SectionActivity.class);
                 startActivity(i);

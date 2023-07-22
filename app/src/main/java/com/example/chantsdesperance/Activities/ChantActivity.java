@@ -9,7 +9,6 @@ import android.view.MotionEvent;
 import android.view.ScaleGestureDetector;
 import android.view.VelocityTracker;
 import android.view.View;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +29,7 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
     TextView tvTexteChant;
     private float textSize;
     private VelocityTracker velocityTracker = null;
+
 
     private static final float MIN_ZOOM = 1.0f;
     private static final float MAX_ZOOM = 5.0f;
@@ -78,10 +78,8 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
         detector = new ScaleGestureDetector(this, new ScaleListener());
 
 
-
+        //menu item clicks for zooming in/out the chant text and sharing the chant text using an Intent
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
-
-            //menu item clicks for zooming in/out the chant text and sharing the chant text using an Intent
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
@@ -109,8 +107,7 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
 
     }
 
-
-    // Handles menu item selections, in this case, navigating back to the ListChantsActivity
+    // The arrow to turn back
 @Override
     public boolean onOptionsItemSelected( MenuItem item ) {
         Intent intent = new Intent(ChantActivity.this, ListChantsActivity.class);
@@ -119,7 +116,6 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
         return true;
     }
 
-    // Inflates the chant menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.chant_menu, menu);
@@ -128,7 +124,7 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
 
 
 
-    // Handles touch events on the view, including scaling, moving, and tracking velocity
+// Zoom with the screen
     @Override
     public boolean onTouch(View v, MotionEvent event) {
         // Pass the event to the scale gesture detector

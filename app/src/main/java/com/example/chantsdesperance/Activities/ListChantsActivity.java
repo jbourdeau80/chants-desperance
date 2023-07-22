@@ -33,9 +33,9 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+
 // This class represents an activity that displays a list of chants. It includes functions for initializing the activity,
 // populating the chant list, handling menu item selections, sorting the chants, and searching for chants
-
 public class ListChantsActivity extends AppCompatActivity {
 
     List<Chants> chants;
@@ -115,6 +115,7 @@ public class ListChantsActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         isSortedByNumber = !isSortedByNumber; // toggle the sort order
     }
+
 
     // Function to check if a string is an integer
     public boolean isInteger(String str) {
@@ -210,6 +211,7 @@ public class ListChantsActivity extends AppCompatActivity {
         startActivityIfNeeded(intent, 0);
         return true;
     }
+
     // Inflates the menu layout and sets up the search functionality
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

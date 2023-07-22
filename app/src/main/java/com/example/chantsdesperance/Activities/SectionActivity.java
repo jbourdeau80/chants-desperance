@@ -3,12 +3,20 @@ package com.example.chantsdesperance.Activities;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CompoundButton;
+import android.widget.ImageButton;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,19 +36,42 @@ import java.util.List;
 
 // This class represents an activity that displays a list of sections. It includes functions for initializing the activity,
 // populating the section list, handling menu item selections, and managing the app's theme
-
 public class SectionActivity extends AppCompatActivity {
     List<Section> sections;
+    SwitchCompat switchCompat;
 
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_section);
-        // Initializes the activity, sets up the toolbar, and configures the RecyclerView for displaying sections
 
+
+        // Initializes the activity, sets up the toolbar, and configures the RecyclerView for displaying sections
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Chants D'Esperance");
+
+
+         switchCompat = (SwitchCompat) findViewById(R.id.myswitch);
+         switchCompat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                boolean checked = ((SwitchCompat) v).isChecked();
+                int currentNightMode = getResources().getConfiguration().uiMode
+                        & Configuration.UI_MODE_NIGHT_MASK;
+                if (checked & (currentNightMode == Configuration.UI_MODE_NIGHT_NO)){
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                }
+                else{
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                }
+                recreate();
+            }
+        });
 
 
         RecyclerView recyclerView = findViewById(R.id.rvSection);
@@ -93,9 +124,9 @@ public class SectionActivity extends AppCompatActivity {
     }
 
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         // Handles the selected menu item based on its ID
         //    - "send_feedback": Starts an email intent for sending feedback
         //    - "share": Starts a share intent for sharing the app's Play Store link
