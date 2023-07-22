@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.chantsdesperance.Models.Chants;
@@ -28,6 +29,7 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
     Chants chants;
     TextView tvTexteChant;
     private float textSize;
+    SwitchCompat switchCompat;
     private VelocityTracker velocityTracker = null;
 
 
@@ -64,6 +66,9 @@ public class ChantActivity extends AppCompatActivity implements View.OnTouchList
 
 
         getSupportActionBar().setTitle(text + chants.gettitreChant());
+
+        switchCompat = (SwitchCompat) findViewById(R.id.myswitch);
+        switchCompat.setVisibility(View.GONE);
 
 
         tvTexteChant = findViewById(R.id.tvTexteChant);

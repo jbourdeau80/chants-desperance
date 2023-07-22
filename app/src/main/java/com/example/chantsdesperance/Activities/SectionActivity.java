@@ -1,6 +1,7 @@
 package com.example.chantsdesperance.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.Uri;
 import android.os.Build;
@@ -46,8 +47,16 @@ public class SectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_section);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
+        String themeMode = sharedPreferences.getString("theme_mode", "light");
+
+        if (themeMode.equals("dark")) {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
 
 
         // Initializes the activity, sets up the toolbar, and configures the RecyclerView for displaying sections
@@ -63,12 +72,19 @@ public class SectionActivity extends AppCompatActivity {
                 boolean checked = ((SwitchCompat) v).isChecked();
                 int currentNightMode = getResources().getConfiguration().uiMode
                         & Configuration.UI_MODE_NIGHT_MASK;
+
+                SharedPreferences sharedPreferences = getSharedPreferences("my_preferences", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+
                 if (checked & (currentNightMode == Configuration.UI_MODE_NIGHT_NO)){
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+                    editor.putString("theme_mode", "dark");
                 }
                 else{
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+                    editor.putString("theme_mode", "light");
                 }
+                editor.apply();
                 recreate();
             }
         });

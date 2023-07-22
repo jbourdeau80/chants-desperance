@@ -7,13 +7,15 @@
     android:background="@color/gold"
     android:elevation="15dp">
 
+
     <androidx.appcompat.widget.SwitchCompat
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/myswitch"
-        android:layout_marginStart="56dp"
+        android:layout_marginStart="100dp"
         android:thumb="@drawable/thumb_layerlist"
         app:track="@drawable/track_backgrounds"
         android:switchPadding="10dp"/>
+
 
 </androidx.appcompat.widget.Toolbar>
