@@ -6,9 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -43,6 +45,7 @@ public class ListChantsActivity extends AppCompatActivity {
     ListChants_Adapter adapter;
     RecyclerView rvChants;
     private boolean isSortedByNumber = true;
+    SwitchCompat switchCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,10 @@ public class ListChantsActivity extends AppCompatActivity {
 
         Toolbar toolbar = findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
+
+        switchCompat = (SwitchCompat) findViewById(R.id.myswitch);
+        switchCompat.setVisibility(View.GONE);
+
         Objects.requireNonNull(getSupportActionBar()).setHomeAsUpIndicator(R.drawable.back);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(section.getnomSection());

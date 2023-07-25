@@ -7,15 +7,6 @@
     tools:context=".Activities.SectionActivity"
     tools:ignore="UseSwitchCompatOrMaterialXml">
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/material_switch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/darkMode"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/appBar"
@@ -29,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|enterAlways" />
+
 
     </com.google.android.material.appbar.AppBarLayout>
 
