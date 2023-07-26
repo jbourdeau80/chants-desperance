@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/ic_menu"
+        android:enabled="true"
+        android:icon="@drawable/menu_vertical"
+        android:title="@string/chant_menu"
+        android:visible="true"
+        app:showAsAction="always" >
+
+        <menu>
+            <item
+                android:id="@+id/zoom_in"
+                android:title="@string/zoom_out"
+                android:icon="@drawable/minus"
+                app:showAsAction="ifRoom" />
+
+            <item android:id="@+id/zoom_out"
+                android:icon="@drawable/plus"
+                android:title="@string/zoom_in"
+                app:showAsAction="ifRoom"/>
+
+            <item android:id="@+id/share"
+                android:icon="@drawable/share_variant_outline"
+                android:title="@string/share_text"
+                app:showAsAction="ifRoom"/>
+        </menu>
+
+
+    </item>
+
+</menu>

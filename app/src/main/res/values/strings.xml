@@ -1,4 +1,20 @@
 <resources>
     <string name="app_name">Chants d\'Esperance</string>
     <string name="App_name">Chants d\'Esperance</string>
+    <string name="chant_d_esperance">Chants D\'Esperance</string>
+    <string name="developpers_email">dimanchemydl133@gmail.com, jenniferbourdeau15@gmail.com</string>
+    <string name="feedback_subject">Feedback for My App</string>
+    <string name="send_feedback">Send feedback</string>
+    <string name="share">Share</string>
+    <string name="exit">Exit</string>
+    <string name="main_menu">Chants_D\'esperance_menu</string>
+    <string name="chant_menu">Chant menu</string>
+    <string name="zoom_in">Zoom_in</string>
+    <string name="zoom_out">Zoom_out</string>
+    <string name="share_text">Share_text</string>
+    <string name="darkMode">Dark Mode</string>
+    <string name="lightMode">Light Mode</string>
+    <string name="search">Search</string>
+    <string name="order">Order</string>
+    <string name="section_menu">Section menu</string>
 </resources>
