@@ -9,6 +9,7 @@ public class Section {
 
     // Constructor to initialize the section object with the provided data
 
+    // Constructor to initialize the section object with the provided data
     public Section(String nomSection, int indiceSection)
     {   this.nomSection = nomSection;
         this.indiceSection = indiceSection;

@@ -21,9 +21,9 @@
                 android:title="@string/share"
                 app:showAsAction="ifRoom"/>
 
-            <item android:id="@+id/dark_light"
-                android:icon="@drawable/icon_light"
-                android:title="@string/darkMode"
+            <item android:id="@+id/about"
+                android:icon="@drawable/information_outline"
+                android:title="About"
                 app:showAsAction="ifRoom"/>
 
             <item android:id="@+id/exit"

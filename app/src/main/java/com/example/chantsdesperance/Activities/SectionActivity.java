@@ -15,6 +15,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
@@ -167,16 +168,9 @@ public class SectionActivity extends AppCompatActivity {
                 shareIntent.putExtra(Intent.EXTRA_TEXT, address);
                 startActivity(Intent.createChooser(shareIntent, "Share App"));
 
-            case R.id.dark_light:
-
-                int currentNightMode = getResources().getConfiguration().uiMode
-                        & Configuration.UI_MODE_NIGHT_MASK;
-                if (currentNightMode == Configuration.UI_MODE_NIGHT_NO) {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-                } else {
-                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-                }
-                recreate();
+            case  R.id.about:
+                // Show the "About" dialog
+                showAboutDialog();
                 return true;
 
             case R.id.exit:
@@ -186,5 +180,14 @@ public class SectionActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    private void showAboutDialog() {
+        // Create and customize the dialog to display app information
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("About Chants D'Esperance App");
+        builder.setMessage("Version 1.0\nDeveloped by Jennifer Bourdeau And Mydleyka Dimanche\n© 2023 My App Inc.");
+        builder.setPositiveButton("OK", null);
+        builder.show();
     }
 }

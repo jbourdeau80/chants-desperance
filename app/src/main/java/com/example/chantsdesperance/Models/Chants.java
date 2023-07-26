@@ -1,10 +1,9 @@
 package com.example.chantsdesperance.Models;
-import org.parceler.Parcel;
 
+import org.parceler.Parcel;
 
 // The Chants class is a model class that represents a chant object.
 // It is annotated with @Parcel to enable serialization and deserialization using Parceler library
-
 @Parcel
 public class Chants {
     int numeroChant;
@@ -30,13 +29,18 @@ public class Chants {
     }
 
     // Getter method for retrieving the chant title
-    public String gettitreChant() { return titreChant; }
+    public String gettitreChant() {
+        return titreChant;
+    }
 
     // Getter method for retrieving the section name
     public String getnomSection() { return nomSection; }
 
 
     // Getter method for retrieving the chant text
-    public String gettexteChant() { return texteChant; }
+    public String gettexteChant() {
+        return texteChant;
+    }
+
 
 }
